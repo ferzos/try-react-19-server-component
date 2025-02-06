@@ -1,4 +1,5 @@
 import { CoffeeCarousel } from "@/components/CoffeeCarousel";
+import { fakeFetch } from "@/utils/fakeTimer";
 
 interface Props {
   params: { type: string };
@@ -8,6 +9,7 @@ const CoffeeDetailPage = async ({
   params: { type },
 }: Props) => {
   const getCoffee = async () => {
+    await fakeFetch(3000)
     const response = await fetch(`https://api.sampleapis.com/coffee/${type}`);
     return await response.json();
   };
