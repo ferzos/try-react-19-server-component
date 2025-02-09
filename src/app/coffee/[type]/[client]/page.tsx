@@ -1,4 +1,4 @@
-import { CoffeeCarousel } from "@/components/CoffeeCarousel";
+import { CoffeeCarouselClient } from "@/components/CoffeeCarousel";
 import { fakeFetch } from "@/utils/fakeTimer";
 
 interface Props {
@@ -22,7 +22,7 @@ const CoffeeDetailPage = async ({
         <button>{`Go to ${type === "hot" ? "iced" : "hot"}`}</button>
       </a>
       {[...new Array(100).fill('')].map((_, index) =>
-        <CoffeeCarousel key={index} coffee={coffeeData} />
+        <CoffeeCarouselClient key={index} coffee={coffeeData} />
       )}
     </>
   );
