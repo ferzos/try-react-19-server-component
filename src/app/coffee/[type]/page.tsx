@@ -1,6 +1,8 @@
 import { CoffeeCarousel } from "@/components/CoffeeCarousel";
 import { fakeFetch } from "@/utils/fakeTimer";
 
+const COMPONENT_MULTIPLIER = 250
+
 interface Props {
   params: { type: string };
 }
@@ -21,7 +23,7 @@ const CoffeeDetailPage = async ({
       <a href={`/coffee/${type === "hot" ? "iced" : "hot"}`}>
         <button>{`Go to ${type === "hot" ? "iced" : "hot"}`}</button>
       </a>
-      {[...new Array(100).fill('')].map((_, index) =>
+      {[...new Array(COMPONENT_MULTIPLIER).fill('')].map((_, index) =>
         <CoffeeCarousel key={index} coffee={coffeeData} />
       )}
     </>
