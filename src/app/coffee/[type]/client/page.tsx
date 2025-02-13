@@ -1,4 +1,4 @@
-import { CoffeeCarousel } from "@/components/CoffeeCarousel";
+import { CoffeeCarouselClient } from "@/components/CoffeeCarousel";
 import { fakeFetch } from "@/utils/fakeTimer";
 
 const COMPONENT_MULTIPLIER = 1
@@ -24,7 +24,7 @@ const CoffeeDetailPage = async ({
         <button>{`Go to ${type === "hot" ? "iced" : "hot"}`}</button>
       </a>
       {[...new Array(COMPONENT_MULTIPLIER).fill('')].map((_, index) =>
-        <CoffeeCarousel key={index} coffee={coffeeData} />
+        <CoffeeCarouselClient key={index} coffee={coffeeData} />
       )}
     </>
   );

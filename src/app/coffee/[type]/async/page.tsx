@@ -1,7 +1,6 @@
-import { CoffeeCarouselClient } from "@/components/CoffeeCarousel";
+import { CoffeeCarouselAsync } from "@/components/CoffeeCarousel";
 import { fakeFetch } from "@/utils/fakeTimer";
-
-const COMPONENT_MULTIPLIER = 250
+import { Suspense } from "react";
 
 interface Props {
   params: { type: string };
@@ -16,16 +15,14 @@ const CoffeeDetailPage = async ({
     return await response.json();
   };
 
-  const coffeeData = await getCoffee();
-
   return (
     <>
       <a href={`/coffee/${type === "hot" ? "iced" : "hot"}`}>
         <button>{`Go to ${type === "hot" ? "iced" : "hot"}`}</button>
       </a>
-      {[...new Array(COMPONENT_MULTIPLIER).fill('')].map((_, index) =>
-        <CoffeeCarouselClient key={index} coffee={coffeeData} />
-      )}
+      <Suspense fallback={<p>Brewing Coffees...</p>}>
+        <CoffeeCarouselAsync coffeePromise={getCoffee()} />
+      </Suspense>
     </>
   );
 };
