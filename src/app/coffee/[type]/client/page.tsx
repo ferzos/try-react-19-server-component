@@ -4,12 +4,12 @@ import { fakeFetch } from "@/utils/fakeTimer";
 const COMPONENT_MULTIPLIER = 1
 
 interface Props {
-  params: { type: string };
+  params: Promise<{ type: string }>;
 }
 
-const CoffeeDetailPage = async ({
-  params: { type },
-}: Props) => {
+const CoffeeDetailPage = async (props: Props) => {
+  const params = await props.params;
+  const { type } = params;
   const getCoffee = async () => {
     await fakeFetch(3000)
     const response = await fetch(`https://api.sampleapis.com/coffee/${type}`);

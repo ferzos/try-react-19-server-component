@@ -1,4 +1,4 @@
-import htmr from 'htmr';
+import parse from 'html-react-parser';
 import sanitizeHtml from 'sanitize-html';
 import { useEffect, useState } from 'react';
 
@@ -15,7 +15,7 @@ const HtmlRenderPage = () => {
 
   return (
     <div>
-      {htmr(sanitizeHtml(content))}
+      {parse(sanitizeHtml(content))}
     </div>
   )
 };

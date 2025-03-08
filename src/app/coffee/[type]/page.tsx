@@ -4,17 +4,15 @@ import { fakeFetch } from "@/utils/fakeTimer";
 const COMPONENT_MULTIPLIER = 1
 
 interface Props {
-  params: { type: string };
+  params: Promise<{ type: string }>;
   searchParams: Promise<Record<string, string | string[] | undefined>>
 }
 
-const CoffeeDetailPage = async ({
-  params: { type },
-  searchParams
-}: Props) => {
-  const queryParams = await searchParams || {};
-
-  const { component_multiplier: componentMultiplier } = queryParams || {}
+const CoffeeDetailPage = async (props: Props) => {
+  const params = await props.params;
+  const searchParams = await props.searchParams;
+  const { type } = params;
+  const { component_multiplier: componentMultiplier } = searchParams
 
   const getCoffee = async () => {
     await fakeFetch(3000)
