@@ -13,7 +13,7 @@ const CoffeeDetailPage = async (props: Props) => {
   const params = await props.params;
   const searchParams = await props.searchParams;
   const { type } = params;
-  const { faker_multiplier: fakerMultiplier } = searchParams
+  const { component_multiplier: componentMultiplier, faker_multiplier: fakerMultiplier } = searchParams
 
   const getCoffee = async () => {
     await fakeFetch(Number(fakerMultiplier) || FAKER_MULTIPLIER);
@@ -28,7 +28,7 @@ const CoffeeDetailPage = async (props: Props) => {
       <a href={`/coffee/${type === "hot" ? "iced" : "hot"}`}>
         <button>{`Go to ${type === "hot" ? "iced" : "hot"}`}</button>
       </a>
-      {[...new Array(COMPONENT_MULTIPLIER).fill('')].map((_, index) =>
+      {[...new Array(Number(componentMultiplier) || COMPONENT_MULTIPLIER).fill('')].map((_, index) =>
         <CoffeeCarouselClient key={index} coffee={coffeeData} />
       )}
     </>
